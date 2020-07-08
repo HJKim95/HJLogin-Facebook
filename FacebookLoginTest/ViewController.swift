@@ -25,6 +25,14 @@ class ViewController: UIViewController {
         iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(login)))
         return iv
     }()
+    
+    lazy var customLogoutButton: UIImageView = {
+        let iv = UIImageView()
+        iv.backgroundColor = .brown
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logout)))
+        return iv
+    }()
 
     
     override func viewDidLoad() {
@@ -32,10 +40,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         view.addSubview(customLoginButton)
+        view.addSubview(customLogoutButton)
         view.addSubview(loginButton)
         
         customLoginButton.frame = CGRect(x: 0, y: 200, width: view.frame.width, height: 50)
-        loginButton.center = view.center
+        customLogoutButton.frame = CGRect(x: 0, y: 300, width: view.frame.width, height: 50)
+        loginButton.frame = CGRect(x: 0, y: 400, width: view.frame.width, height: 50)
         
         if let token = AccessToken.current, !token.isExpired {
             // User is logged in, do work such as go to next view controller.
